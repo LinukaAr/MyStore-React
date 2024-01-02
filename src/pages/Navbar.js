@@ -15,19 +15,17 @@ const Navbar = ({ categories }) => {
                 <Link to="/" className="navbar-brand">My Store</Link>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto">
-                        {categories && categories.map((category) => (
-                            <li className="nav-item" key={category.id}>
-                                <Link to={`/category/${category.id}`} className="nav-link">{category.name}</Link>
-                            </li>
-                        ))}
                         <li className="nav-item">
-                            <Link to="/manage-products" className="nav-link">Manage Products</Link>
+                            <Link to="/manage-products" className="nav-link px-3">Manage Products</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/categories" className="nav-link">Categories</Link>
+                            <Link to="/categories" className="nav-link px-3">Categories</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/checkout" className="nav-link">Checkout</Link>
+                            <Link to="/stocks" className="nav-link px-3">Stocks</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/checkout" className="nav-link px-3">Checkout</Link>
                         </li>
                     </ul>
                     <div className="d-flex">

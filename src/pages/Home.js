@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="container">
-        <h1 className="text-center mt-4 mb-5">Welcome to Our Shop</h1>
+        <h1 className="text-center mt-4 mb-5">Welcome to MyStore</h1>
 
         <div className="row">
           {products.map((product) => (
@@ -52,7 +52,7 @@ const Home = () => {
           <h2>Discover New Arrivals</h2>
           <p>Check out our latest products and find something special!</p>
           <Link to="/categories" className="btn btn-dark">
-            View Categories
+            View 
           </Link>
         </div>
       </div>

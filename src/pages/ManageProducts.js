@@ -78,63 +78,72 @@ const ManageProducts = () => {
       <Navbar categories={categories} />
       <h1 style={{ textAlign: 'center' }}>Manage Products</h1>
 
-      <button onClick={getProducts}>Load Products</button>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <form onSubmit={handleSubmit} style={{ width: '300px', margin: '20px 0' }}>
+          <div style={{ marginBottom: '10px' }}>
+            <label style={{ display: 'block' }}>Product Name</label>
+            <input
+              type="text"
+              required
+              className="form-control"
+              onChange={handleName}
+              value={name || ''}
+              style={{ width: '100%', padding: '5px' }}
+            />
+          </div>
+          <div style={{ marginBottom: '10px' }}>
+            <label style={{ display: 'block' }}>Product Price</label>
+            <input
+              type="text"
+              required
+              onChange={handlePrice}
+              value={price || ''}
+              style={{ width: '100%', padding: '5px' }}
+            />
+          </div>
+          <div style={{ marginBottom: '10px' }}>
+            <label style={{ display: 'block' }}>Product Qty</label>
+            <input
+              type="text"
+              required
+              onChange={handleQty}
+              value={qty}
+              style={{ width: '100%', padding: '5px' }}
+            />
+          </div>
+          <div style={{ marginBottom: '10px' }}>
+            <label style={{ display: 'block' }}>Category</label>
+            <select required onChange={handleCategory} style={{ width: '100%', padding: '5px' }}>
+              <option>Please Select</option>
+              {categories &&
+                categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <button className="btn btn-primary" type="submit" style={{ width: '100%' }}>
+            Save Product
+          </button>
+        </form>
 
-      <ol>
-        {products &&
-          products.map((product) => (
-            <li key={product.id}>
-              <Link to={`/products/${product.id}`}>{product.name}</Link>
-            </li>
-          ))}
-      </ol>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Product Name</label>
-          <input
-            type="text"
-            required
-            className="form-control"
-            onChange={handleName}
-            value={name || ''}
-          />
-        </div>
-        <div>
-          <label>Product Price</label>
-          <input
-            type="text"
-            required
-            onChange={handlePrice}
-            value={price || ''}
-          />
-        </div>
-        <div>
-          <label>Product Qty</label>
-          <input
-            type="text"
-            required
-            onChange={handleQty}
-            value={qty}
-          />
-        </div>
-        <div>
-          <label>Category</label>
-          <select required onChange={handleCategory}>
-            <option>Please Select</option>
-            {categories &&
-              categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-          </select>
-        </div>
-
-        <button className="btn btn-primary" type="submit">
-          Save Product
+        {/* <button onClick={getProducts} style={{ marginBottom: '20px', padding: '8px 16px' }}>
+          Load Products
         </button>
-      </form>
+
+    <ol style={{ listStyle: 'none', padding: '0', width: '300px', color: '#333' }}>
+      {products &&
+        products.map((product) => (
+          <li key={product.id} style={{ textDecoration: 'none' }}>
+            <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              {product.name}
+            </Link>
+          </li>
+        ))}
+    </ol> */}
+
+      </div>
     </>
   );
 };

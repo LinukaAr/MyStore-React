@@ -9,6 +9,7 @@ import Category from './pages/Category';
 import Checkout from './pages/Checkout';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
+import Stocks from './pages/Stocks';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import ManageProducts from './pages/ManageProducts';
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/categories" element={<Category />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/manage-products" element={<ManageProducts />} />
+          <Route path="/stocks" element={<Stocks />} />
         </Route>
 
         <Route path="/register" element={<Register />} />
