@@ -1,58 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import Navbar from './Navbar'; // Ensure correct path to your Navbar component
+import Navbar from './Navbar'; 
 
 const Category = () => {
-    const [category, setCategory] = useState(null);
-    const [products, setProducts] = useState(null);
+    const [categories, setCategories] = useState([]);
     const params = useParams();
 
-    // Define categories and handleLogout or get them from somewhere else
-    const categories = []; // Define your categories here
-    const handleLogout = () => {}; // Define your handleLogout function here
+    const handleLogout = () => {};
 
-    const getCategory = () => {
-        fetch(`http://localhost:8081/categories/${params.id}`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setCategory(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-
-    const getProductsByCategory = () => {
-        fetch(`http://localhost:8081/categories/${params.id}/products`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setProducts(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
+    
+    const getCategories = async () => {
+        try {
+          const response = await axios.get("http://localhost:8081/categories");
+          setCategories(response.data);
+        } catch (error) {
+          console.error('Error fetching categories:', error);
+        }
+      };
 
     useEffect(() => {
-        getCategory();
-        getProductsByCategory();
+        getCategories();
     }, []);
 
     return (
         <>
             <Navbar categories={categories} handleLogout={handleLogout} />
             <h1 style={{ textAlign: 'center' }}>Categories</h1>
-            {category && <h1>{category.name}</h1>}
-            <ol>
-                {products && products.map((product) => (
-                    <li key={product.id}><Link to={`/products/${product.id}`}>{product.name}</Link></li>
-                ))}
-            </ol>
+            <div className="container mt-5">
+                <div className="row">
+                    {categories.map((category) => (
+                        <div key={category.id} className="col-md-4 mb-4">
+                            <div className="card">
+                                <img
+                                    src={category.imageUrl}
+                                    className="card-img-top"
+                                    alt={category.name}
+                                />
+                                <div className="card-body">
+                                    <h5 className="card-title">{category.name}</h5>
+                                    <Link  className="btn btn-primary">
+                                        View Details
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </>
     );
 };

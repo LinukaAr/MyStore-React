@@ -22,6 +22,25 @@ const Checkout = ({ categories, handleLogout }) => {
         }
     }
 
+    const createReceipt = () => {
+        const date = new Date().toLocaleString();
+        const receiptContent = `
+            Date: ${date}\n
+            Total: $${total}\n
+            Tax: $${tax}\n
+            Thank you for your purchase!\n
+        `;
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`<pre>${receiptContent}</pre>`);
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+    const addToOrder = (product) => {
+        setOrderProducts([...orderProducts, product]);
+        setTotal(total + product.price);
+    }
+
     const createOrder = async () => {
         try {
             const productIds = orderProducts.map(obj => obj.id);
@@ -34,6 +53,7 @@ const Checkout = ({ categories, handleLogout }) => {
                 setOrderProducts([]);
                 setTotal(0);
                 setTax(0);
+                createReceipt(); // Access tax here
                 console.log('Order created successfully!');
             } else {
                 console.error('Failed to create order.');
@@ -43,17 +63,11 @@ const Checkout = ({ categories, handleLogout }) => {
         }
     }
 
-    const addToOrder = (product) => {
-        setOrderProducts([...orderProducts, product]);
-        setTotal(total + product.price);
-    }
 
     return (
         <>
             <Navbar categories={categories} handleLogout={handleLogout} />
             <h1 style={{ textAlign: 'center' }}>Checking Out</h1>
-            <div className="col-md-4">.</div>
-            <div className="col-md-4">.</div>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">
