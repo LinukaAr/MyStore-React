@@ -67,10 +67,10 @@ const Checkout = ({ categories, handleLogout }) => {
     return (
         <>
             <Navbar categories={categories} handleLogout={handleLogout} />
-            <h1 style={{ textAlign: 'center' }}>Checking Out</h1>
+            <h1 className="row justify-content-center mt-4 mb-5" >Checking Out</h1>
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-4">
+                <div className="row justify-content-center">
+                    <div className="col-md-3">
                         <h2>Available Products</h2>
                         {products.map(product => (
                             <div className="product-box px-2 py-2" key={product.id}>

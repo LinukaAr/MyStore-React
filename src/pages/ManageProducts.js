@@ -76,8 +76,8 @@ const ManageProducts = () => {
   return (
     <>
       <Navbar categories={categories} />
-      <h1 style={{ textAlign: 'center' }}>Manage Products</h1>
-
+      <h1 className=" row justify-content-center mt-4 mb-5">Manage Products</h1>
+      
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <form onSubmit={handleSubmit} style={{ width: '300px', margin: '20px 0' }}>
           <div style={{ marginBottom: '10px' }}>
@@ -123,7 +123,7 @@ const ManageProducts = () => {
                 ))}
             </select>
           </div>
-          <button className="btn btn-primary" type="submit" style={{ width: '100%' }}>
+          <button className="btn btn-dark" type="submit" style={{ width: '100%' }}>
             Save Product
           </button>
         </form>
