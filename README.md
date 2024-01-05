@@ -41,8 +41,6 @@ This project is a React-based web application designed to manage various functio
 - CSS
 - Bootstrap
 - React Router DOM
-- Axios
-- etc. (Include other relevant technologies)
 
 ## Installation
 
